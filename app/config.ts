@@ -10,7 +10,7 @@ const metadata: Metadata = {
     title: 'Santiago González - Portfolio Website',
     description: 'Portfolio of UI Developer Santiago González.',
     ogImage: '/images/og.png',
-    url: 'https://sgonzalez.surge.sh/',
+    url: 'https://sgtrusty.cc/',
     keywords: [
       'web design',
       'UI developer',
