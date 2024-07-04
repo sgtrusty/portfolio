@@ -2,21 +2,21 @@ import { Metadata } from '@/types/metadata';
 
 const metadata: Metadata = {
   author: {
-    name: 'John Doe',
-    username: 'johndoe',
-    label: 'Designer & Developer'
+    name: 'Santiago González',
+    username: 'sgtrusty',
+    label: 'UI Developer'
   },
   site: {
-    title: 'John Doe - Portfolio Website',
-    description: 'Portfolio of web & UI designer/developer John Doe.',
+    title: 'Santiago González - Portfolio Website',
+    description: 'Portfolio of UI Developer Santiago González.',
     ogImage: '/images/og.png',
-    url: 'https://www.example.com',
+    url: 'https://sgonzalez.surge.sh/',
     keywords: [
       'web design',
-      'UI design',
+      'UI developer',
       'web development',
       'portfolio',
-      'John Doe'
+      'Santiago González'
     ],
     language: 'en',
     charset: 'UTF-8'

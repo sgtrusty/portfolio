@@ -22,7 +22,7 @@ export default function Home() {
         <Header loader={true} />
         <main className="flex-1">
           <Hero />
-          <About />
+          {/* <About /> */}
           <Projects />
           <Skills />
           <Experience />
