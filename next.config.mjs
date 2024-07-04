@@ -1,14 +1,20 @@
 import remarkGfm from 'remark-gfm';
 import createMDX from '@next/mdx';
 
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
-  experimental: {
-    serverActions: {
-      allowedOrigins: ['localhost:3000']
-    }
-  }
+  images: {
+      loader: 'custom',
+      loaderFile: './lib/bundler/image-loader.js',
+  },
+  // experimental: {
+  //   serverActions: {
+  //     allowedOrigins: ['localhost:3000']
+  //   }
+  // }
 };
 
 // TODO: Add more plugins like rehype & properly use it

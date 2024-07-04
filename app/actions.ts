@@ -1,4 +1,4 @@
-'use server';
+// 'use server';
 import { Resend } from 'resend';
 import { ContactEmail } from '@/components/emails/contact-template';
 
