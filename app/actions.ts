@@ -25,6 +25,35 @@ const EMAIL_FROM = process.env.EMAIL_FROM;
 const EMAIL_TO = process.env.EMAIL_TO;
 
 export async function contactSubmit(prevState: any, formData: FormData) {
+  const validatedFields = contactFormSchema.safeParse({
+    name: formData.get('name'),
+    email: formData.get('email'),
+    message: formData.get('message')
+  });
+
+  if (!validatedFields.success) {
+    return {
+      success: false,
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: 'Please check your entries and try again.'
+    };
+  }
+
+  const { name, email, message } = validatedFields.data;
+  const subject = `Message from ${name} on Portfolio`;
+  const toEmail = 'me@sgtrusty.anonaddy.me';
+
+  document.location =
+    'mailto:' +
+    toEmail +
+    '?subject=' +
+    subject +
+    '&body=' +
+    message +
+    `\n\nfrom website using: ${email}`;
+}
+
+export async function contactSubmitWithAPI(prevState: any, formData: FormData) {
   try {
     const resend = new Resend(process.env.RESEND_API_KEY);
     const validatedFields = contactFormSchema.safeParse({
