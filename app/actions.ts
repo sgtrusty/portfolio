@@ -51,6 +51,12 @@ export async function contactSubmit(prevState: any, formData: FormData) {
     '&body=' +
     message +
     `\n\nfrom website using: ${email}`;
+
+  return {
+    success: true,
+    message:
+      'Thank you for reaching out! Your e-mail handler software should open now.'
+  };
 }
 
 export async function contactSubmitWithAPI(prevState: any, formData: FormData) {
