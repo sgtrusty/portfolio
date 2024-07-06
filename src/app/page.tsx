@@ -1,14 +1,13 @@
 import {
   Header,
   Hero,
-  About,
   Skills,
   Experience,
   Testimonials,
   Projects,
   Contact,
   Footer
-} from '@/components/sections';
+} from '@/sections';
 
 import Preloader from '@/components/preloader/preloader';
 import Cursor from '@/components/cursor/cursor';
@@ -22,7 +21,6 @@ export default function Home() {
         <Header loader={true} />
         <main className="flex-1">
           <Hero />
-          {/* <About /> */}
           <Projects />
           <Skills />
           <Experience />
