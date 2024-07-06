@@ -17,7 +17,7 @@ interface SelectedLinkState {
   index: number;
 }
 
-const Index: React.FC<IndexProps> = ({ setIsActive }) => {
+const Nav: React.FC<IndexProps> = ({ setIsActive }) => {
   const [selectedLink, setSelectedLink] = useState<SelectedLinkState>({
     isActive: false,
     index: 0
@@ -52,4 +52,4 @@ const Index: React.FC<IndexProps> = ({ setIsActive }) => {
   );
 };
 
-export default Index;
+export default Nav;

@@ -1,8 +1,4 @@
-import type { Metadata } from 'next';
-
-import { Header } from '@/components/sections';
-
-import Preloader from '@/components/preloader/preloader';
+import { Header } from '@/sections';
 import Cursor from '@/components/cursor/cursor';
 import SmoothScroll from '@/components/smooth-scroll';
 

@@ -1,11 +1,11 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-import { CodeIcon } from 'lucide-react';
 import styles from './style.module.scss';
 import { opacity, background } from './anim';
 import Nav from './nav';
+import { useWindowScroll } from "@uidotdev/usehooks";
 
 import { metadata as meta } from '@/app/config';
 
@@ -15,10 +15,12 @@ interface HeaderProps {
 
 const Header = ({ loader }: HeaderProps) => {
   const [isActive, setIsActive] = useState<boolean>(false);
+  const [{ x: scrollX, y: scrollY }, scrollTo] = useWindowScroll();
+  const [animated, setAnimated] = useState<boolean>(false);
 
   return (
     <motion.header
-      className={styles.header}
+      className={`${styles.header} ${animated || (scrollY && scrollY > 12) ? styles.header_scrolled : ''}`}
       initial={{
         y: -80
       }}
@@ -58,6 +60,8 @@ const Header = ({ loader }: HeaderProps) => {
         initial="initial"
         animate={isActive ? 'open' : 'closed'}
         className={styles.background}
+        onAnimationStart={() => setAnimated(true)}
+        onAnimationComplete={() => setAnimated(isActive)}
       ></motion.div>
       <AnimatePresence mode="wait">
         {isActive && <Nav setIsActive={setIsActive} />}

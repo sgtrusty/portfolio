@@ -1,11 +1,14 @@
+.header_scrolled {
+  background-color: hsl(var(--background) / .8);
+  backdrop-filter: blur(12px);
+}
+
 .header {
   z-index: 10;
-  background-color: hsl(var(--background) / .8);
   position: fixed;
   width: 100%;
   box-sizing: border-box;
   padding: 15px;
-  backdrop-filter: blur(12px);
 
   .background {
     background-color: hsl(
