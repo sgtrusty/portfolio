@@ -1,9 +1,14 @@
 
 @keyframes glitch-anim-1 {
-	0%, 100% { 
+	0% { 
 		opacity: 1;
 		transform: translate3d(40px, 0, 0) scale3d(-1, -1, 1);
 		clip-path: polygon(0 2%, 100% 2%, 100% 5%, 0 5%);
+	}
+	
+	100% {
+		opacity: 0;
+		transform: translate3d(0, 0, 0);
 	}
   
 	20% {
@@ -30,7 +35,7 @@
 		clip-path: polygon(0 50%, 100% 50%, 100% 20%, 0 20%);
 	}
 
-  65% {
+	65% {
 
 		clip-path: polygon(0 70%, 100% 70%, 100% 70%, 0 70%);
 	}
@@ -54,10 +59,15 @@
 }
 
 @keyframes glitch-anim-2 {
-	0%, 100% { 
+	0% { 
 		opacity: 1;
 		transform: translate3d(-10px, 0, 0);
 		clip-path: polygon(0 25%, 100% 25%, 100% 30%, 0 30%);
+	}
+	
+	100% {
+		opacity: 0;
+		transform: translate3d(0, 0, 0);
 	}
   
 	10% {
@@ -122,10 +132,15 @@
 }
 
 @keyframes glitch-anim-3 {
-	0%, 100% {
+	0%{
 		opacity: 1;
 		transform: translate3d(0, -5px, 0) scale3d(-1, -1, 1);
 		clip-path: polygon(0 1%, 100% 1%, 100% 3%, 0 3%);
+	}
+	
+	100% {
+		opacity: 0;
+		transform: translate3d(0, 0, 0);
 	}
   
 	5% {
@@ -238,7 +253,7 @@
     animation-duration: 2s;
     animation-delay: 0;
     animation-timing-function: linear;
-    animation-iteration-count: infinite;
+    animation-iteration-count: 1;
     animation-fill-mode: forwards;
   }
   
