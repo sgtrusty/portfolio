@@ -1,13 +1,11 @@
 import type { Metadata } from 'next';
-import { Instrument_Sans } from 'next/font/google';
 import '@/styles/main.css';
 
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
 
 import { metadata as meta } from './config';
-
-const inter = Instrument_Sans({ subsets: ['latin'] });
+import { inter } from '@/styles/fonts';
 
 export const metadata: Metadata = {
   metadataBase: new URL(meta.site.url),
