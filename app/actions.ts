@@ -55,7 +55,7 @@ export async function contactSubmit(prevState: any, formData: FormData) {
   return {
     success: true,
     message:
-      'Thank you for reaching out! Your e-mail handler software should open now.'
+      'Thank you for reaching out! Your e-mail handler software should be opened briefly.'
   };
 }
 

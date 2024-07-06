@@ -10,7 +10,8 @@ const nextConfig = {
       loader: 'custom',
       loaderFile: './lib/bundler/image-loader.js',
   },
-  // experimental: {
+  // assetPrefix: process.env.NODE_ENV == 'production' ? 'https://ik.imagekit.io/sgtrusty/portfolio' : undefined,
+    // experimental: {
   //   serverActions: {
   //     allowedOrigins: ['localhost:3000']
   //   }
