@@ -1,6 +1,6 @@
 
 @keyframes glitch-anim-1 {
-	0% { 
+	0%, 98% { 
 		opacity: 1;
 		transform: translate3d(40px, 0, 0) scale3d(-1, -1, 1);
 		clip-path: polygon(0 2%, 100% 2%, 100% 5%, 0 5%);
@@ -59,7 +59,7 @@
 }
 
 @keyframes glitch-anim-2 {
-	0% { 
+	0%, 95% { 
 		opacity: 1;
 		transform: translate3d(-10px, 0, 0);
 		clip-path: polygon(0 25%, 100% 25%, 100% 30%, 0 30%);
@@ -132,7 +132,7 @@
 }
 
 @keyframes glitch-anim-3 {
-	0%{
+	0%, 98% {
 		opacity: 1;
 		transform: translate3d(0, -5px, 0) scale3d(-1, -1, 1);
 		clip-path: polygon(0 1%, 100% 1%, 100% 3%, 0 3%);
@@ -250,8 +250,8 @@
   width: calc(100% + 10px * 2);
   
   .c_glitch:hover &:nth-child(n+2) {
-    animation-duration: 2s;
-    animation-delay: 0;
+    animation-duration: 1.5s;
+    animation-delay: 1s;
     animation-timing-function: linear;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
