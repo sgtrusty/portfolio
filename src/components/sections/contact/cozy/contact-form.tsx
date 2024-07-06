@@ -6,14 +6,15 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 
-import { LoaderCircleIcon, PlusIcon } from 'lucide-react';
+import { LoaderCircleIcon } from 'lucide-react';
 import { useFormState, useFormStatus } from 'react-dom';
 import { useEffect, useRef, useState } from 'react';
-import { Typed } from 'typed.ts';
 import { useInView } from 'framer-motion';
 import { generateCompany, generateGoodbye, generateGreeting, generateName } from '@/utility/name-generator';
 import { contactSubmit } from '@/actions/email';
 import { toast } from '@/components/ui/use-toast';
+import { sleep } from '@/utility/extended-js';
+import { TyperCategory, Typer } from '@/utility/typer';
 
 interface ValidationErrors {
   success: boolean;
@@ -25,47 +26,27 @@ interface ValidationErrors {
   };
 }
 
-interface ContactFormProps extends React.HTMLAttributes<HTMLDivElement> {
-  state: ValidationErrors;
-}
-
 interface IContactMock {
   name: string;
   email: string;
   message: string;
 }
 
+interface IFormTyper {
+  text: string;
+  type: ContactFormField;
+}
+
+enum ContactFormField {
+  name,
+  email,
+  message
+}
+
 const contactMock : IContactMock = {
   name: 'Deff Jones',
   email: 'macjens@example.com',
   message: 'Hi,\n\nHow are you? :)'
-}
-
-const generateTyped = (data: string, cb : (str: string) => void) : Typed => {
-  const typed = new Typed({ callback: cb });
-  typed
-    .type(data, {
-      eraseDelay: { min: 40, max: 80 },
-      perLetterDelay: { min: 50, max: 125 },
-      noSpecialCharErrors: true,
-      errorMultiplier: 0.25
-    });
-  return typed;
-}
-
-const generateEraser = (data: string, cb : FunctionStringCallback) : Typed => {
-  let messageComplete = false;
-  const typed = new Typed({ callback: (text: string) => {
-    if (!messageComplete) {
-      messageComplete = text == data;
-      return;
-    }
-    cb(text);
-  }});
-  typed.fastForward();
-  typed.type(data, {perLetterDelay: 0});
-  typed.backspace(data.length, {eraseDelay: { min: 40, max: 80 }});
-  return typed;
 }
 
 const generateData = () : IContactMock => {
@@ -96,42 +77,39 @@ export default function ContactForm() {
   const ref = useRef(null);
   const isInView = useInView(ref);
 
-  const regenerateTexts = async () => {
-    const typedList : Typed[] = [];
-    let typed: Typed;
+  const modifyPlaceholders = async (typerConfig: IFormTyper[], type: TyperCategory) => {
+    const callbacks = {
+      [ContactFormField.name]: setMockName,
+      [ContactFormField.email]: setMockEmail,
+      [ContactFormField.message]: setMockMessage,
+    };
     
-    typed = generateEraser(mockMessage, (text: string) => {
-      setMockMessage(text);
-    })
-    typedList.push(typed);
-
-    typed = generateEraser(mockEmail, (text: string) => {
-      setMockEmail(text);
-    });
-    typedList.push(typed);
-
-    typed = generateEraser(mockName, (text: string) => {
-      setMockName(text);
-    });
-    typedList.push(typed);
-
-    const seedData = generateData();
-    typed = generateTyped(seedData.name, setMockName);
-    typedList.push(typed);
-    
-    typed = generateTyped(seedData.email, setMockEmail);
-    typedList.push(typed);
-    
-    typed = generateTyped(seedData.message, setMockMessage);
-    typedList.push(typed);
-
-    // TODO: stop typing if focused, function to set data immediately (probs updateText)
-
-    for (const index in typedList) {
-      await typedList[index].run();
+    for (const typer of typerConfig) {
+      let factory = Typer(type);
+      let typed = factory(typer.text, callbacks[typer.type]);
+      await typed.run();
     }
+  }
 
-    setRegenerate(true);
+  // current state, generator, finally cb and modify cb
+  const regenerateTexts = async () => {
+    await new Promise(async (resolve) => {
+      const typerConfig: IFormTyper[] = [
+        {text: mockMessage, type: ContactFormField.message},
+        {text: mockEmail, type: ContactFormField.email},
+        {text: mockName, type: ContactFormField.name},
+      ];
+      await modifyPlaceholders(typerConfig, TyperCategory.eraser);
+      resolve(sleep(1250));
+    }).then(async () => {
+      const seedData = generateData();
+      const typerConfig: IFormTyper[] = [
+        {text: seedData.name, type: ContactFormField.name},
+        {text: seedData.email, type: ContactFormField.email},
+        {text: seedData.message, type: ContactFormField.message},
+      ];
+      await modifyPlaceholders(typerConfig, TyperCategory.writer);
+    }).finally(() => setRegenerate(true));
   }
 
   useEffect(() => {
@@ -141,7 +119,6 @@ export default function ContactForm() {
     }
   }, [isInView, regenerate]);
 
-  const { pending } = useFormStatus();
 
   const [isFocused, setIsFocused] = useState(0);
   const handleOnFocus = () => {
@@ -149,15 +126,10 @@ export default function ContactForm() {
   }; 
 
   const handleBlur = () => { 
-    const original = isFocused;
-    setTimeout(()=> {
-      if (isFocused == original) {
-        console.log(isFocused, original);
-        setIsFocused(0);
-      }
-    }, 500)
+    setIsFocused(0);
   };
 
+  const { pending } = useFormStatus();
   const [state, formAction] = useFormState(contactSubmit, initialState);
 
   useEffect(() => {
