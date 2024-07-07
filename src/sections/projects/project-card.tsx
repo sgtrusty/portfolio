@@ -43,7 +43,7 @@ function ProjectCard({
             sizes="100vw"
             width={500}
             height={300}
-            className="h-48 w-full rounded-md object-cover"
+            className="h-48 w-full rounded-md rounded-b-none border-b-2 object-cover"
           />
           <div className="block relative p-2">
             <h3 className="px-3 text-xl font-bold">{name}</h3>
