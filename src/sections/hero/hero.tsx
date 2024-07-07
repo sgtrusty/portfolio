@@ -15,7 +15,7 @@ import { cycle, sleep } from '@/utility/extended-js';
 const heroTagTexts = [
   "I design and build beautiful websites.",
   "How about a quick collab? Your ideas, my code.",
-  "Some jobs are better left finished.",
+  "Some jobs are better when they're finished.",
   "⚡☢️ Look out! There is a bear behind you 🐻.",
   "just kidding 😆",
   "thinking🤔...",
@@ -63,28 +63,30 @@ function Hero() {
 
   return (
       <MotionWrap className="w-full pt-12 md:mt-0">
-        <div className="grid items-center justify-center gap-4 px-4 text-center"> {/* md:px-6 lg:gap-10 */}
-          <div className="">
-            <div className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm dark:bg-foreground/10">
+        <div className="flex items-center justify-center space-x-32 px-4 text-center"> {/* md:px-6 lg:gap-10 */}
+          <div className="z-0 basis-1/3">
+            <div className="inline-block rounded-lg bg-gray-100 px-3 pb-1 text-sm dark:bg-foreground/10">
               {hero.label}
             </div>
             <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-5xl/none">
-              Hi, I&apos;m &nbsp;<span className="text-2xl md:text-3xl text-red-600">&#123;</span><span className={`text-4xl sm:text-5xl md:text-6xl lg:text-6xl bg-clip-text text-transparent ${heroGradient} bg-[length:200%_auto] animate-gradient`}> {hero.name} </span><span className="text-2xl md:text-3xl text-red-600">&#125;</span>
+              <p>Hi, I&apos;m &nbsp;</p>
+              <p><span className="text-2xl md:text-3xl text-red-600">&#123;</span><span className={`text-4xl sm:text-5xl md:text-6xl lg:text-6xl bg-clip-text text-transparent ${heroGradient} bg-[length:200%_auto] animate-gradient`}> {hero.name} </span><span className="text-2xl md:text-3xl text-red-600">&#125;</span></p>
+              {/* tooltip with email here? */}
             </h1>
             <p className="mx-auto max-w-[600px] text-gray-500 dark:text-gray-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
               {heroText}
             </p>
           </div>
-          {/* add https://www.radix-ui.com/primitives/docs/components/hover-card here? */}
 
           <motion.section
-            whileInView={{ y: ["-110%", "-65%", "0"], opacity: [0, 1] }}
+            whileInView={{ y: ["-80%", "-25%", "0"], opacity: [0, 1]}}
             transition={{ duration: 0.5 }}
+            className="pt-24 relative"
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
           >
             <div
               className={`${styles.c_glitch} mx-auto aspect-square lg:aspect-video overflow-hidden h-96 -mb-8`}
-              onMouseEnter={() => setHovered(true)}
-              onMouseLeave={() => setHovered(false)}
             >
               {Array.from({length: 5}, (_, index) => {
                 return (<Image
@@ -100,31 +102,32 @@ function Hero() {
                 />);
               })}
             </div>
+            <motion.div
+              animate={(width && width > 1024) ? {
+                opacity: hovered ? 1 : 0,
+                x: hovered ? 0 : "100%",
+                display: hovered ? 'flex' : 'none'
+              } : {display: 'none'}}
+              tabIndex={-1}
+              className="sm:hidden flex items-center justify-start absolute -right-24 top-20 w-1/2"
+              >
+              <div className="w-3 overflow-hidden">
+                <div className="h-4 bg-green-400 rotate-45 transform origin-bottom-right rounded-sm"></div>
+              </div>
+              <div className="text-2xl bg-gradient-to-r from-green-400 to-indigo-500 p-4 my-6 rounded-lg flex-1">
+                <p>🔥🔥🔥🔥 Hey there!</p>
+                <p>&nbsp;</p>
+                <p>💡 Did you know; I love my job 😎?!...</p>
+                <p>&nbsp;</p>
+                <p>Well, I really do. I put my heart💜 into my work 💼, I believe that&apos;s why it ends up looking so cool❄️.</p>
+                {/* on second/third popover, easter egg: */}
+                {/* add comment: by the way -- can you find all the cool little features I've added? send me an e-mail with the list of things you've found. */}
+                {/* maybe make it glitch only on that call? or extra hard glitching */}
+                {/* maybe alternate opened side? */}
+              </div>
+            </motion.div>
           </motion.section>
         </div>
-        <motion.div
-          animate={(width && width > 1024) ? {
-            opacity: hovered ? 1 : 0,
-            x: hovered ? 0 : "100%",
-            display: hovered ? 'flex' : 'none'
-          } : {display: 'none'}}
-          className="sm:hidden flex items-center justify-start absolute right-24 top-1/4 w-1/4"
-          >
-          <div className="w-3 overflow-hidden">
-            <div className="h-4 bg-green-400 rotate-45 transform origin-bottom-right rounded-sm"></div>
-          </div>
-          <div className="text-2xl bg-gradient-to-r from-green-400 to-indigo-500 p-4 my-6 rounded-lg flex-1">
-            <p>🔥🔥🔥🔥 Hey there!</p>
-            <p>&nbsp;</p>
-            <p>💡 Did you know; I love my job 😎?!...</p>
-            <p>&nbsp;</p>
-            <p>Well, I really do. I put my heart💜 into my work 💼, I believe that&apos;s why it ends up looking so cool❄️.</p>
-            {/* on second/third popover, easter egg: */}
-            {/* add comment: by the way -- can you find all the cool little features I've added? send me an e-mail with the list of things you've found. */}
-            {/* maybe make it glitch only on that call? or extra hard glitching */}
-            {/* maybe alternate opened side? */}
-          </div>
-        </motion.div>
       </MotionWrap>
   );
 }

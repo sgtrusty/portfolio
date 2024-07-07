@@ -18,7 +18,7 @@ function Projects() {
     <MotionWrap className="w-full pb-24" id="projects">
       <div className="px-4 md:px-12">
         <div className="grid items-start gap-2">
-          <div className="space-y-2 px-6">
+          <div className="space-y-2 px-6 pb-4">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-4xl lg:text-4xl/none">
               My Projects
             </h2>
@@ -39,7 +39,7 @@ function Projects() {
                 {projects.map((project, index) => (
                   <CarouselItem
                     key={index}
-                    className="md:basis-1/2 lg:basis-full	xl:basis-1/2"
+                    className="md:basis-1/4 lg:basis-1/4	xl:basis-1/4"
                   >
                     <div className="h-full" key={index}>
                       <ProjectCard
