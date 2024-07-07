@@ -45,7 +45,7 @@ function ProjectCard({
             height={300}
             className="h-48 w-full rounded-md object-cover"
           />
-          <div className="block relative">
+          <div className="block relative p-2">
             <h3 className="px-3 text-xl font-bold">{name}</h3>
             <p className="px-3 text-sm text-gray-500 dark:text-gray-400">
               {description || ''}
@@ -55,7 +55,7 @@ function ProjectCard({
                 <TooltipTrigger asChild>
                   <Button
                     variant="outline"
-                    className="z-[2] rounded-full border bg-muted hover:bg-foreground/10 absolute right-0 top-0"
+                    className="z-[2] rounded-full border bg-muted hover:bg-foreground/10 absolute right-2 top-2"
                     asChild
                   >
                     <Link href={'/projects/' + slug}>

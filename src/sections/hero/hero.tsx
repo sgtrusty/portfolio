@@ -36,6 +36,7 @@ function Hero() {
               {hero.description}
             </p>
           </div>
+          {/* add https://www.radix-ui.com/primitives/docs/components/hover-card here? */}
           <div
             className={`${styles.c_glitch} mx-auto aspect-square lg:aspect-video overflow-hidden h-96 -mb-8`}
           >
