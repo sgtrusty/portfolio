@@ -71,6 +71,7 @@ function ProjectCard({
           </div>
         </div>
       </CardContent>
+      {/* TODO: gradient decal as shadow to these cards? grungey like */}
     </Card>
   );
 }

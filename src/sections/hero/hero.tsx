@@ -17,7 +17,7 @@ const heroTagTexts = [
   "How about a quick collab? Your ideas, my code.",
   "Some jobs are better when they're finished.",
   "⚡☢️ Look out! There is a bear behind you 🐻.",
-  "just kidding 😆",
+  "i think it's gone now 😆",
   "thinking🤔...",
   "hmpf...‌ ‌ ‌ ‌ ‌rock'n'roll! 🎸...",
   "...‌ ‌ hey!",
@@ -63,7 +63,7 @@ function Hero() {
 
   return (
       <MotionWrap className="w-full pt-12 md:mt-0">
-        <div className="flex items-center justify-center space-x-32 px-4 text-center"> {/* md:px-6 lg:gap-10 */}
+        <div className="grid xl:flex items-center justify-center gap-4 xl:space-x-32 px-4 text-center"> {/* md:px-6 lg:gap-10 */}
           <div className="z-0 basis-1/3">
             <div className="inline-block rounded-lg bg-gray-100 px-3 pb-1 text-sm dark:bg-foreground/10">
               {hero.label}
@@ -81,7 +81,7 @@ function Hero() {
           <motion.section
             whileInView={{ y: ["-80%", "-25%", "0"], opacity: [0, 1]}}
             transition={{ duration: 0.5 }}
-            className="pt-24 relative"
+            className="xl:pt-24 relative"
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
           >
@@ -103,13 +103,13 @@ function Hero() {
               })}
             </div>
             <motion.div
-              animate={(width && width > 1024) ? {
+              animate={(width && width > 1280) ? {
                 opacity: hovered ? 1 : 0,
                 x: hovered ? 0 : "100%",
                 display: hovered ? 'flex' : 'none'
               } : {display: 'none'}}
               tabIndex={-1}
-              className="sm:hidden flex items-center justify-start absolute -right-24 top-20 w-1/2"
+              className="sm:hidden flex items-center justify-start absolute -right-16 2xl:left-auto 2xl:-right-32 top-20 w-1/2"
               >
               <div className="w-3 overflow-hidden">
                 <div className="h-4 bg-green-400 rotate-45 transform origin-bottom-right rounded-sm"></div>
