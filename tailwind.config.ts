@@ -59,6 +59,12 @@ const config = {
         sm: 'calc(var(--radius) - 4px)'
       },
       keyframes: {
+        gradient: {
+          to: { 'background-position': '200% center' }
+        },
+        border: {
+          to: { '--border-angle': '360deg' }
+        },
         'accordion-down': {
           from: { height: '0' },
           to: { height: 'var(--radix-accordion-content-height)' }
@@ -81,6 +87,8 @@ const config = {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        gradient: 'gradient 8s linear infinite',
+        border: 'border 4s linear infinite',
         spotlight: 'spotlight 2s ease .75s 1 forwards'
       }
     }

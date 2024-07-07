@@ -8,7 +8,7 @@ import {
   CarouselContent,
   CarouselItem,
   CarouselNext,
-  CarouselPrevious
+  CarouselPrevious,
 } from '@/components/ui/carousel';
 
 import { projects } from './config';
@@ -19,7 +19,7 @@ function Projects() {
       <div className="px-4 md:px-12">
         <div className="grid items-start gap-2">
           <div className="space-y-2 px-6">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-5xl/none">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-4xl lg:text-4xl/none">
               My Projects
             </h2>
             <p className="text-gray-500 dark:text-gray-400">
@@ -30,7 +30,8 @@ function Projects() {
           <div className="flex items-center justify-center overflow-hidden">
             <Carousel
               opts={{
-                align: 'start'
+                align: 'start',
+                loop: true,
               }}
               className="w-full"
             >

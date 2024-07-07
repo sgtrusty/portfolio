@@ -241,7 +241,7 @@
 .c_glitch__img {
   background-blend-mode: none;
   background-color: transparent;
-  height: calc(100% + 5px * 2);
+  height: calc(100% - 25px * 2);
   left: 0;
   pointer-events: none;
   position: absolute;
@@ -251,7 +251,7 @@
   
   .c_glitch:hover &:nth-child(n+2) {
     animation-duration: 1.5s;
-    animation-delay: 1s;
+    animation-delay: 0.3s;
     animation-timing-function: linear;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;

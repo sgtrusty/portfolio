@@ -31,12 +31,12 @@ function ProjectCard({
   return (
     <Card
       className={cn(
-        'flex h-full flex-col justify-between bg-muted/40',
+        'flex flex-col justify-between bg-muted/40',
         className
       )}
     >
-      <CardContent className="p-4 md:p-6">
-        <div className="grid gap-2">
+      <CardContent>
+        <div className="grid">
           <Image
             src={thumbnail || '/placeholder.svg'}
             alt={`Image of ${name}`}
@@ -45,33 +45,32 @@ function ProjectCard({
             height={300}
             className="h-48 w-full rounded-md object-cover"
           />
-          <h3 className="text-xl font-bold">{name}</h3>
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            {description || ''}
-          </p>
+          <div className="block relative">
+            <h3 className="px-3 text-xl font-bold">{name}</h3>
+            <p className="px-3 text-sm text-gray-500 dark:text-gray-400">
+              {description || ''}
+            </p>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className="z-[2] rounded-full border bg-muted hover:bg-foreground/10 absolute right-0 top-0"
+                    asChild
+                  >
+                    <Link href={'/projects/' + slug}>
+                      <InfoIcon />
+                    </Link>
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>More Details</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
         </div>
       </CardContent>
-      <CardFooter className="flex items-center justify-end p-4 md:p-6">
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                variant="outline"
-                className="z-[2] rounded-full border bg-muted hover:bg-foreground/10"
-                asChild
-              >
-                <Link href={'/projects/' + slug}>
-                  <InfoIcon />
-                </Link>
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>More Details</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-      </CardFooter>
-      <Link href={'/projects/' + slug} className="z-1 absolute inset-0 block" />
     </Card>
   );
 }
