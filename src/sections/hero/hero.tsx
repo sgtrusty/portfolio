@@ -43,13 +43,12 @@ function Hero() {
     await typed.run();
 
     const toIndex = cycle(genIndex + 1, 0, heroTagTexts.length);
-    await sleep(5000);
-    console.log('toIndex', toIndex)
     setGenIndex(toIndex);
   };
 
   useEffect(() => {
-    generateHeroText();
+    /** TODO: remember to do if hero is in viewport only */
+    setTimeout(generateHeroText, 5000);
   }, [genIndex])
 
   useEffect(() => {
@@ -70,32 +69,38 @@ function Hero() {
               {hero.label}
             </div>
             <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-5xl/none">
-              Hi, I&apos;m &nbsp;<span className="text-2xl md:text-3xl text-red-500">&#123;</span><span className={`text-4xl sm:text-5xl md:text-6xl lg:text-6xl bg-clip-text text-transparent ${heroGradient} bg-[length:200%_auto] animate-gradient`}> {hero.name} </span><span className="text-2xl md:text-3xl text-red-500">&#125;</span>
+              Hi, I&apos;m &nbsp;<span className="text-2xl md:text-3xl text-red-600">&#123;</span><span className={`text-4xl sm:text-5xl md:text-6xl lg:text-6xl bg-clip-text text-transparent ${heroGradient} bg-[length:200%_auto] animate-gradient`}> {hero.name} </span><span className="text-2xl md:text-3xl text-red-600">&#125;</span>
             </h1>
             <p className="mx-auto max-w-[600px] text-gray-500 dark:text-gray-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
               {heroText}
             </p>
           </div>
           {/* add https://www.radix-ui.com/primitives/docs/components/hover-card here? */}
-          <div
-            className={`${styles.c_glitch} mx-auto aspect-square lg:aspect-video overflow-hidden h-96 -mb-8`}
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
+
+          <motion.section
+            whileInView={{ y: ["-110%", "-65%", "0"], opacity: [0, 1] }}
+            transition={{ duration: 0.5 }}
           >
-            {Array.from({length: 5}, (_, index) => {
-              return (<Image
-                key={index}
-                alt="personal portrait"
-                aria-hidden={index != 0}
-                className={`${styles.c_glitch__img} rounded-xl object-cover object-center`}
-                sizes="100vw"
-                src={'/images/hero.jpg'}
-                width="600"
-                height="320"
-                priority={true}
-              />);
-            })}
-          </div>
+            <div
+              className={`${styles.c_glitch} mx-auto aspect-square lg:aspect-video overflow-hidden h-96 -mb-8`}
+              onMouseEnter={() => setHovered(true)}
+              onMouseLeave={() => setHovered(false)}
+            >
+              {Array.from({length: 5}, (_, index) => {
+                return (<Image
+                  key={index}
+                  alt="personal portrait"
+                  aria-hidden={index != 0}
+                  className={`${styles.c_glitch__img} rounded-xl object-cover object-center`}
+                  sizes="100vw"
+                  src={'/images/hero.jpg'}
+                  width="600"
+                  height="320"
+                  priority={true}
+                />);
+              })}
+            </div>
+          </motion.section>
         </div>
         <motion.div
           animate={(width && width > 1024) ? {
@@ -113,7 +118,7 @@ function Hero() {
             <p>&nbsp;</p>
             <p>💡 Did you know; I love my job 😎?!...</p>
             <p>&nbsp;</p>
-            <p>Well, I really do. I put my heart💜 into my work 💼, I believe that's why it ends up looking so cool❄️.</p>
+            <p>Well, I really do. I put my heart💜 into my work 💼, I believe that&apos;s why it ends up looking so cool❄️.</p>
             {/* on second/third popover, easter egg: */}
             {/* add comment: by the way -- can you find all the cool little features I've added? send me an e-mail with the list of things you've found. */}
             {/* maybe make it glitch only on that call? or extra hard glitching */}
