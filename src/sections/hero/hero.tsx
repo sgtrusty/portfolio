@@ -1,13 +1,13 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import MotionWrap from '@/components/motion-wrap';
 import Image from 'next/image';
 import styles from './style.module.scss';
 
 import { hero } from './config';
 import { useTheme } from 'next-themes';
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { useWindowSize } from '@uidotdev/usehooks';
 import { Typed } from 'typed.ts';
 import { cycle, sleep } from '@/utility/extended-js';
@@ -21,16 +21,27 @@ const heroTagTexts = [
   "thinking🤔...",
   "hmpf...‌ ‌ ‌ ‌ ‌rock'n'roll! 🎸...",
   "...‌ ‌ hey!",
-  "hm?‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ",
 ]
 
 function Hero() {
-  const { setTheme, resolvedTheme } = useTheme();
   const [ heroGradient, setHeroGradient ] = useState<string>();
   const [ hovered, setHovered ] = useState<boolean>(false);
-  const { width } = useWindowSize();
   const [ genIndex, setGenIndex ] = useState<number>(0);
   const [ heroText, setHeroText ] = useState<string>(heroTagTexts[0]);
+  const [ regenerate, setRegenerate ] = useState<boolean>(true);
+  
+  const { resolvedTheme } = useTheme();
+  const { width } = useWindowSize();
+  const ref = useRef(null);
+  const isInView = useInView(ref);
+
+  useEffect(() => {
+    if (!isInView || !regenerate) {
+      return;
+    }
+    setRegenerate(false);
+    generateHeroText();
+  }, [isInView, regenerate]);
 
   const generateHeroText = async () => {
     const typed = new Typed({ callback: setHeroText });
@@ -44,12 +55,8 @@ function Hero() {
 
     const toIndex = cycle(genIndex + 1, 0, heroTagTexts.length);
     setGenIndex(toIndex);
+    setTimeout(() => setRegenerate(true), 5000);
   };
-
-  useEffect(() => {
-    /** TODO: remember to do if hero is in viewport only */
-    setTimeout(generateHeroText, 5000);
-  }, [genIndex])
 
   useEffect(() => {
     if (resolvedTheme == "dark") {
@@ -63,7 +70,7 @@ function Hero() {
 
   return (
       <MotionWrap className="w-full pt-12 md:mt-0">
-        <div className="grid xl:flex items-center justify-center gap-4 xl:space-x-32 px-4 text-center"> {/* md:px-6 lg:gap-10 */}
+        <div ref={ref} className="grid xl:flex items-center justify-center gap-4 xl:space-x-32 px-4 text-center"> {/* md:px-6 lg:gap-10 */}
           <div className="z-0 basis-1/3">
             <div className="inline-block rounded-lg bg-gray-100 px-3 pb-1 text-sm dark:bg-foreground/10">
               {hero.label}
