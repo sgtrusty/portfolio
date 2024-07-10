@@ -34,7 +34,7 @@ function Contact() {
               </a>
             </p>
             <div className="flex space-x-1">
-              {contact.socials?.github && (
+              {contact.socials?.youtube && (
                 <Button variant="outline" size="icon" asChild>
                   <a target="_blank" href={contact.socials.youtube}>
                     <YoutubeIcon className="h-4 w-4" />
