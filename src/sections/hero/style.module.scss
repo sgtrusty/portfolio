@@ -259,24 +259,24 @@
   
   .c_glitch:hover &:nth-child(2) {
     animation-name: glitch-anim-1;
-	filter: sepia(100%) saturate(300%) brightness(70%) hue-rotate(180deg);
+	filter: invert(75%) saturate(300%) brightness(125%) hue-rotate(180deg);
   }
   
   .c_glitch:hover &:nth-child(3) {
     animation-name: glitch-anim-2;
-	filter: sepia(100%) saturate(300%) brightness(70%) hue-rotate(30deg);
+	filter: invert(75%) saturate(300%) brightness(125%) hue-rotate(50deg);
   }
   
   .c_glitch:hover &:nth-child(4) {
     animation-name: glitch-anim-3;
-	filter: sepia(100%) saturate(300%) brightness(70%) hue-rotate(235deg);
+	filter: invert(75%) saturate(300%) brightness(125%) hue-rotate(235deg);
   }
   
   .c_glitch:hover &:nth-child(5) {
     animation-name: glitch-anim-4;
     background-blend-mode: overlay;
     background-color: #af4949;
-	filter: sepia(100%) saturate(300%) brightness(70%) hue-rotate(285deg);
+	filter: invert(75%) saturate(300%) brightness(125%) hue-rotate(285deg);
   }
 }
 
