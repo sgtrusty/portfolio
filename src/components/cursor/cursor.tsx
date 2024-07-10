@@ -29,6 +29,7 @@ export default function Cursor() {
   const [timeEvent, setTimeEvent] = useState<NodeJS.Timeout>();
 
   useEffect(() => {
+    // TODO: use debounced sum to check distance moved in X time curve
     const ender =  () => {
       if (!!timeEvent)
         clearTimeout(timeEvent)
@@ -50,7 +51,7 @@ export default function Cursor() {
       }
 
       setMovedTime(0);
-    }, 3000);
+    }, 750);
     setTimeEvent(_timeout);
     return ender;
   }, [movedTime]);
