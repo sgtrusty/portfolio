@@ -1,4 +1,8 @@
-export const opacity = {
+export const LOADER_LOADTIME = 500;
+export const LOADER_LOADTICK = 25;
+export const LOADER_LOADTICK_INITIAL = 100;
+
+export const LOADER_ANIM_OPACITY = {
   initial: {
     opacity: 0
   },
@@ -8,7 +12,7 @@ export const opacity = {
   }
 };
 
-export const slideUp = {
+export const LOADER_ANIM_SLIDEUP = {
   initial: {
     top: 0
   },

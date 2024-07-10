@@ -2,7 +2,7 @@
 import styles from './style.module.scss';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { opacity, slideUp } from './anim';
+import { LOADER_ANIM_OPACITY, LOADER_ANIM_SLIDEUP, LOADER_LOADTICK, LOADER_LOADTICK_INITIAL, LOADER_LOADTIME } from './config';
 
 const steps = [
   '10%',
@@ -17,7 +17,7 @@ const steps = [
   '100%'
 ];
 
-export default function Index() {
+export default function Loader() {
   const [index, setIndex] = useState(0);
   const [dimension, setDimension] = useState({ width: 0, height: 0 });
 
@@ -31,7 +31,7 @@ export default function Index() {
       () => {
         setIndex(index + 1);
       },
-      index == 0 ? 1000 : 150
+      index == 0 ? LOADER_LOADTICK_INITIAL  : LOADER_LOADTICK
     );
   }, [index]);
 
@@ -51,14 +51,14 @@ export default function Index() {
 
   return (
     <motion.div
-      variants={slideUp}
+      variants={LOADER_ANIM_SLIDEUP}
       initial="initial"
       exit="exit"
       className={styles.introduction}
     >
       {dimension.width > 0 && (
         <>
-          <motion.p variants={opacity} initial="initial" animate="enter">
+          <motion.p variants={LOADER_ANIM_OPACITY} initial="initial" animate="enter">
             {steps[index]}
           </motion.p>
           <svg>
