@@ -69,13 +69,13 @@ function Hero() {
   }, [resolvedTheme]);
 
   return (
-      <MotionWrap className="w-full pt-12 md:mt-0">
-        <div ref={ref} className="grid xl:flex items-center justify-center gap-4 xl:space-x-32 px-4 text-center"> {/* md:px-6 lg:gap-10 */}
-          <div className="z-0 basis-1/3">
-            <div className="inline-block rounded-lg bg-gray-100 px-3 pb-1 text-sm dark:bg-foreground/10">
+      <MotionWrap className="w-full pt-12 md:mt-0 xl:pt-36">
+        <div ref={ref} className="grid xl:flex justify-center gap-4 xl:space-x-32 px-4 text-center"> {/* md:px-6 lg:gap-10 */}
+          <div className="basis-1/3 mt-10">
+            <div className="inline-block rounded-lg bg-gray-100 mr-2 px-3 pb-1 text-sm dark:bg-foreground/10">
               {hero.label}
             </div>
-            <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-5xl/none">
+            <h1 className="text-3xl mt-2 font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-5xl/none">
               <p>Hi, I&apos;m &nbsp;</p>
               <p><span className="text-2xl md:text-3xl text-red-600">&#123;</span><span className={`text-4xl sm:text-5xl md:text-6xl lg:text-6xl bg-clip-text text-transparent ${heroGradient} bg-[length:200%_auto] animate-gradient`}> {hero.name} </span><span className="text-2xl md:text-3xl text-red-600">&#125;</span></p>
               {/* tooltip with email here? */}
@@ -88,7 +88,7 @@ function Hero() {
           <motion.section
             whileInView={{ y: ["-80%", "-25%", "0"], opacity: [0, 1]}}
             transition={{ duration: 0.5 }}
-            className="xl:pt-24 relative"
+            className="relative"
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
           >
@@ -116,7 +116,7 @@ function Hero() {
                 display: hovered ? 'flex' : 'none'
               } : {display: 'none'}}
               tabIndex={-1}
-              className="sm:hidden flex items-center justify-start absolute -right-16 2xl:left-auto 2xl:-right-32 top-20 w-1/2"
+              className="sm:hidden flex items-center justify-start absolute -right-16 2xl:left-auto 2xl:-right-32 -top-4 w-1/2"
               >
               <div className="w-3 overflow-hidden">
                 <div className="h-4 bg-green-400 rotate-45 transform origin-bottom-right rounded-sm"></div>
