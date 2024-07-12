@@ -40,4 +40,4 @@ next-env.d.ts
 
 # secrets 
 .env
-NOTES
+VAULT

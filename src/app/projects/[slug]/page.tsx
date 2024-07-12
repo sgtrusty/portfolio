@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 
 import { getAllPages, getPage, type ProjectMetadata } from '@/utility/mdx';
 import Header from './header';
+import PortfolioImage from '@/components/portfolio/portfolio-image';
 
 type ProjectPageProps = {
   params: {
@@ -89,12 +90,9 @@ const ProjectPage = (props: ProjectPageProps) => {
   return (
     <div className="container mx-auto">
       <Header metadata={metadata} />
-      <Image
-        src={`/images/projects/${slug}/cover.jpg`}
-        width={1280}
-        height={832}
-        alt={metadata.name}
-        className="my-12 rounded-lg"
+      <PortfolioImage
+        slug={slug}
+        name={metadata.name}
       />
       {content}
     </div>

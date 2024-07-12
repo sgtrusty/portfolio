@@ -15,6 +15,8 @@ import { projects } from './config';
 
 function Projects() {
   return (
+    // TODO: Organize projects by market type: gaming, ai, ui/ux
+    // TODO: On hover project card change other images
     <MotionWrap className="w-full pb-24" id="projects">
       <div className="px-4 md:px-12">
         <div className="grid items-start gap-2">

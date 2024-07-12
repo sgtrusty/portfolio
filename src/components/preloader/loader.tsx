@@ -18,6 +18,12 @@ const steps = [
 ];
 
 export default function Loader() {
+  // TODO: Use actual loader modules
+  // - https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming
+  // - https://medium.com/@usamahafeez0/streaming-ui-with-suspense-in-nextjs-e30ac1466dbc
+  // - https://borstch.com/blog/development/implementing-loading-ui-and-streaming-in-nextjs-14
+  // - https://nextjs.org/docs/app/building-your-application/optimizing/lazy-loading#importing-client-components
+  
   const [index, setIndex] = useState(0);
   const [dimension, setDimension] = useState({ width: 0, height: 0 });
 

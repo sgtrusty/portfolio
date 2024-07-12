@@ -1,0 +1,15 @@
+$--filter: sepia(95%) hue-rotate(135deg) blur(3px) opacity(65%);
+
+.portfolio_image {
+    &:before {
+        position: absolute;
+        z-index: -1; /* put it *behind* parent */
+        /* zero all offsets */
+        /* -webkit-prefixed version 
+            * still needed for 
+            * some mobile browsers 💔😭 */
+        -webkit-filter: $--filter;
+                filter: $--filter;
+        content: ''
+    }
+  }
