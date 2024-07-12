@@ -58,29 +58,28 @@ function Hero() {
     setTimeout(() => setRegenerate(true), 5000);
   };
 
-  useEffect(() => {
-    if (resolvedTheme == "dark") {
-      const themeBg = "bg-[linear-gradient(to_right,theme(colors.purple.400),theme(colors.purple.100),theme(colors.pink.300),theme(colors.orange.400),theme(colors.pink.300),theme(colors.purple.100),theme(colors.purple.400))]";
-      setHeroGradient(themeBg);
-    } else {
-      const themeBg = "bg-[linear-gradient(to_right,theme(colors.indigo.400),theme(colors.indigo.100),theme(colors.sky.400),theme(colors.fuchsia.400),theme(colors.sky.400),theme(colors.indigo.100),theme(colors.indigo.400))] ";
-      setHeroGradient(themeBg);
-    }
-  }, [resolvedTheme]);
+  const gradientThemeLight = "bg-[linear-gradient(to_right,theme(colors.red.200),theme(colors.red.100),theme(colors.amber.400),theme(colors.red.200),theme(colors.amber.400),theme(colors.amber.100),theme(colors.red.200))] ";
+  const gradientThemeDark = "dark:bg-[linear-gradient(to_right,theme(colors.purple.400),theme(colors.purple.100),theme(colors.pink.300),theme(colors.orange.400),theme(colors.pink.300),theme(colors.purple.100),theme(colors.purple.400))]";
 
   return (
-      <MotionWrap className="w-full pt-12 md:mt-0 xl:pt-36">
-        <div ref={ref} className="grid xl:flex justify-center gap-4 xl:space-x-32 px-4 text-center"> {/* md:px-6 lg:gap-10 */}
-          <div className="basis-1/3 mt-10">
+      <MotionWrap className="w-full pt-12 md:mt-0 xl:pt-24">
+        <div ref={ref} className="grid xl:flex xl:align-center justify-center gap-4 xl:space-x-32 px-4 text-center"> {/* md:px-6 lg:gap-10 */}
+          <div
+            className={`${styles.bg_grad_custom} basis-1/3 pt-8 pb-12 px-4 xl:px-0 xl:h-1/2 bg-black/15 rounded-3xl border border-yellow-300 dark:border-yellow-500 backdrop-blur-lg dark:bg-neutral-600/45 2xl:mt-8`}
+          >
             <div className="inline-block rounded-lg bg-gray-100 mr-2 px-3 pb-1 text-sm dark:bg-foreground/10">
               {hero.label}
             </div>
             <h1 className="text-3xl mt-2 font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-5xl/none">
-              <p>Hi, I&apos;m &nbsp;</p>
-              <p><span className="text-2xl md:text-3xl text-red-600">&#123;</span><span className={`text-4xl sm:text-5xl md:text-6xl lg:text-6xl bg-clip-text text-transparent ${heroGradient} bg-[length:200%_auto] animate-gradient`}> {hero.name} </span><span className="text-2xl md:text-3xl text-red-600">&#125;</span></p>
+              <p className="text-amber-200 dark:text-foreground">Hi, I&apos;m &nbsp;</p>
+              <p className="relative">
+                <span className="text-2xl md:text-3xl text-red-500">&#123;</span>
+                <span className={`text-4xl sm:text-5xl md:text-6xl lg:text-6xl bg-clip-text text-transparent ${gradientThemeLight} ${gradientThemeDark} bg-[length:200%_auto] animate-gradient`}> {hero.name} </span>
+                <span className="text-2xl md:text-3xl text-red-500">&#125;</span>
+              </p>
               {/* tooltip with email here? */}
             </h1>
-            <p className="mx-auto max-w-[600px] text-gray-500 dark:text-gray-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+            <p className="mx-auto max-w-[600px] text-amber-200 dark:text-gray-200 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
               {heroText}
             </p>
           </div>
@@ -100,7 +99,7 @@ function Hero() {
                   key={index}
                   alt="personal portrait"
                   aria-hidden={index != 0}
-                  className={`${styles.c_glitch__img} rounded-xl object-cover object-center`}
+                  className={`${styles.c_glitch__img} ${index == 0 ? "border border-yellow-300 dark:border-red-400 backdrop-blur-lg" : ""} rounded-xl object-cover object-center`}
                   sizes="100vw"
                   src={'/images/hero.jpg'}
                   width="600"

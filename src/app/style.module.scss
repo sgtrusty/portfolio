@@ -1,0 +1,127 @@
+
+
+/**/
+/*other default setting ...*/
+/**/
+
+:global(.dark) {
+    .body {
+        --secondary-glow: conic-gradient(
+            from 10deg at 50% 50%,
+            rgb(255, 0, 0, 0.45) 0deg,
+            rgba(255, 215, 55, 0.65) 160deg,
+            rgb(255, 215, 55, 0.65) 0deg,
+            transparent 360deg
+        );
+    
+        --third-glow: conic-gradient(
+            from 90deg at 50% 50%,
+            rgb(255, 0, 0, 0.45) 0deg,
+            rgb(255, 215, 55, 0.4) 160deg,
+            rgb(255, 0, 225, 0.35) 240deg,
+            transparent 360deg
+        );
+
+        &:before {
+            content: '';
+            background: var(--third-glow);
+            border-radius: 50%;
+            width: 85vw;
+            height: 35vw;
+            margin-left: -200px;
+            filter:blur(90px);  
+            top: calc(65vh - 50vw/2);
+            left: calc(22.5vw);
+            animation: animateBefore 7s cubic-bezier(0.47, 0, 0.745, 0.715) infinite;
+            position: absolute;
+            z-index: -1;
+        }
+    
+        &:after {
+            content: '';
+            background: var(--secondary-glow);
+            border-radius: 50%;
+            width: 62.5vw;
+            height: 700px;
+            filter:blur(90px);
+            top: calc(50vh - 50vw/2);
+            left: calc(50vw - 50vw/2);
+            animation: animateAfter 7s cubic-bezier(0.47, 0, 0.745, 0.715) infinite;
+            position: absolute;
+            z-index: -1;
+        }
+    }
+}
+
+.body {
+    --secondary-glow: conic-gradient(
+        from 10deg at 50% 50%,
+        #eb7494 0deg,
+        #ae77b2 55deg,
+        #97b5da 120deg,
+        transparent 360deg
+    );
+    
+    --third-glow: conic-gradient(
+        from 90deg at 50% 50%,
+        #ff8b7e 0deg,
+        #7ed2da 120deg,
+        #8bdce0 55deg,
+        transparent 360deg
+    );
+
+    &:before {
+        content: '★';
+        background: var(--third-glow);
+        border-radius: 50%;
+        width: 85vw;
+        height: 35vw;
+        margin-left: -200px;
+        filter:blur(90px);  
+        top: calc(65vh - 50vw/2);
+        left: calc(22.5vw);
+        animation: animateBefore 7s cubic-bezier(0.47, 0, 0.745, 0.715) infinite;
+        position: absolute;
+        z-index: -1;
+    }
+
+    &:after {
+        content: '';
+        background: var(--secondary-glow);
+        border-radius: 50%;
+        width: 500px;
+        height: 700px;
+        filter:blur(90px);
+        top: calc(50vh - 50vw/2);
+        left: calc(50vw - 50vw/2);
+        animation: animateAfter 7s cubic-bezier(0.47, 0, 0.745, 0.715) infinite;
+        position: absolute;
+        z-index: -1;
+    }
+}
+
+@keyframes animateBefore {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(200px) scale(0.8);
+
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes animateAfter{
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-250px) scale(1.2);
+
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
