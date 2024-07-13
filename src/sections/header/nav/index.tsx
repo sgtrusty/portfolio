@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import styles from './style.module.scss';
 import { height } from '../anim';
 import Body from './body/body';
-import Image from './image/image';
+import NavImage from './image/nav-image';
 import ModeToggle from '@/components/mode-toggle';
 
 import { SiteUrls } from '@/config/sitemap';
@@ -40,7 +40,7 @@ const Nav: React.FC<IndexProps> = ({ setIsActive }) => {
             setIsActive={setIsActive}
           />
         </div>
-        <Image
+        <NavImage
           src={SiteUrls[selectedLink.index].thumbnail}
           isActive={selectedLink.isActive}
         />

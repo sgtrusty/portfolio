@@ -9,7 +9,7 @@ interface IndexProps {
   isActive: boolean;
 }
 
-const Index: React.FC<IndexProps> = ({ src, isActive }) => {
+const NavImage: React.FC<IndexProps> = ({ src, isActive }) => {
   return (
     <motion.div
       variants={opacity}
@@ -18,13 +18,15 @@ const Index: React.FC<IndexProps> = ({ src, isActive }) => {
       className={styles.imageContainer}
     >
       <Image
+        className='object-cover h-full'
         src={`/images/nav/${src}`}
-        fill={true}
         alt={'An image to describe the selected link'}
+        width="1024"
+        height="720"
         // priority={true}
       />
     </motion.div>
   );
 };
 
-export default Index;
+export default NavImage;
