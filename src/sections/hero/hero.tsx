@@ -118,14 +118,14 @@ function Hero() {
               className="sm:hidden flex items-center justify-start absolute -right-16 2xl:left-auto 2xl:-right-32 -top-4 w-1/2"
               >
               <div className="w-3 overflow-hidden">
-                <div className="h-4 bg-green-400 rotate-45 transform origin-bottom-right rounded-sm"></div>
+                <div className="h-4 bg-green-400 dark:bg-gray-500 rotate-45 transform origin-bottom-right rounded-sm"></div>
               </div>
-              <div className="text-2xl bg-gradient-to-r from-green-400 to-indigo-500 p-4 my-6 rounded-lg flex-1">
+              <div className="text-2xl bg-green-400 bg-gradient-to-r from-green-400 to-indigo-500 dark:from-gray-500 dark:to-red-300 p-4 my-6 rounded-lg flex-1">
+                <h3 className="text-3xl mt-2 font-bold tracking-tighter">💡 Did you know; 😎?!...</h3>
+                <p>&nbsp;</p>
                 <p>🔥🔥🔥🔥 Hey there!</p>
                 <p>&nbsp;</p>
-                <p>💡 Did you know; I love my job 😎?!...</p>
-                <p>&nbsp;</p>
-                <p>Well, I really do. I put my heart💜 into my work 💼, I believe that&apos;s why it ends up looking so cool❄️.</p>
+                <p>Well, I put my heart💜 into my work 💼, I believe that&apos;s why it ends up looking so cool❄️.</p>
                 {/* on second/third popover, easter egg: */}
                 {/* add comment: by the way -- can you find all the cool little features I've added? send me an e-mail with the list of things you've found. */}
                 {/* maybe make it glitch only on that call? or extra hard glitching */}

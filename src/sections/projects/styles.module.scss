@@ -1,15 +1,19 @@
 $--filter: sepia(95%) hue-rotate(135deg) blur(1.2px) opacity(65%);
 
-.portfolio_image {
-    /* -webkit-prefixed version 
-        * still needed for 
-        * some mobile browsers 💔😭 */
-    -webkit-filter: $--filter;
-            filter: $--filter;
-    -webkit-transition : -webkit-filter 500ms linear;
-    transition : filter 500ms linear;
+:global(.grid) {
     &:hover {
-        -webkit-filter: unset;
-                filter: unset;
+        .portfolio_image {
+            -webkit-filter: unset;
+                    filter: unset;
+        }
     }
-  }
+    .portfolio_image {
+        /* -webkit-prefixed version 
+            * still needed for 
+            * some mobile browsers 💔😭 */
+        -webkit-filter: $--filter;
+                filter: $--filter;
+        -webkit-transition : -webkit-filter 500ms linear;
+        transition : filter 500ms linear;
+    }
+}

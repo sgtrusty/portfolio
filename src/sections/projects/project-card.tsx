@@ -52,7 +52,7 @@ function ProjectCard({
         />
         <div className="block bg-yellow-200/25 dark:bg-inherit relative p-2 h-28 justify-center">
           <h3 className="px-3 text-xl font-bold">{name}</h3>
-          <p className="px-3 text-sm text-gray-500 dark:text-gray-400">
+          <p className="px-3 text-sm text-gray-500 dark:text-gray-200">
             {description || ''}
           </p>
           <TooltipProvider>
