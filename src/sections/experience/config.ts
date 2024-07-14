@@ -2,32 +2,25 @@ import { Experience } from '@/types/experience';
 
 const experiences: Experience[] = [
   {
-    name: 'Web Development',
-    duration: '2022 - Present',
-    company: 'Acme Inc',
+    name: 'Fullstack Developer',
+    duration: '2021 - Present',
+    company: 'Present Work',
     description:
       'Building beautiful and functional websites using modern web technologies, focusing on performance, accessibility, and SEO-friendly design.'
   },
   {
-    name: 'UI/UX Design',
-    duration: '2021 - 2022',
-    company: 'Creative Designs Ltd',
+    name: 'Previous Work',
+    duration: '2018 - 2021',
+    company: 'Devops / Cloud',
     description:
-      'Creating delightful and intuitive user experiences, specializing in responsive design and user-centric methodologies.'
+      'Applied various cloud technologies (incl. services & computing) to develop solutions for online products using various providers: Amazon Web Services (AWS), Google Cloud and Huawei Cloud.'
   },
   {
-    name: 'Database Management',
-    duration: '2020 - 2022',
-    company: 'DataTech Solutions',
+    name: 'Previous Work',
+    duration: '2012 - 2018',
+    company: 'Game Development',
     description:
-      'Storing and organizing data efficiently, ensuring data integrity, and optimizing database queries for high traffic applications.'
-  },
-  {
-    name: 'Mobile Development',
-    duration: '2019 - 2021',
-    company: 'Innovative Apps Inc',
-    description:
-      'Crafting engaging and scalable apps for smartphones and tablets, focusing on cross-platform development and native performance.'
+      'Developed games for PC, Web and Mobile using ActionScript 3 for user-facing deployment applications and a backend server stack using PHP.'
   }
 ];
 
