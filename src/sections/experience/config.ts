@@ -2,9 +2,9 @@ import { Experience } from '@/types/experience';
 
 const experiences: Experience[] = [
   {
-    name: 'Fullstack Developer',
+    name: 'Present Work',
     duration: '2021 - Present',
-    company: 'Present Work',
+    company: 'Fullstack Developer',
     description:
       'Building beautiful and functional websites using modern web technologies, focusing on performance, accessibility, and SEO-friendly design.'
   },

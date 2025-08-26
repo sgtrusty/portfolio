@@ -101,7 +101,7 @@ function Hero() {
                   aria-hidden={index != 0}
                   className={`${styles.c_glitch__img} ${index == 0 ? "border border-yellow-300 dark:border-red-400 backdrop-blur-lg" : ""} rounded-xl object-cover object-center`}
                   sizes="100vw"
-                  src={'/images/hero.jpg'}
+                  src={'/images/hero-2025.jpg'}
                   width="600"
                   height="320"
                   priority={true}

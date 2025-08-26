@@ -31,7 +31,7 @@ function Hero() {
           </div>
           <div className="relative aspect-[4/2] w-screen">
             <Image
-              src={'/images/hero.jpg'}
+              src={'/images/hero-2025.jpg'}
               style={{ objectFit: 'cover' }}
               alt="img"
               fill
