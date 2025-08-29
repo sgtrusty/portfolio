@@ -76,6 +76,7 @@ export default function ContactForm() {
 
   const ref = useRef(null);
   const isInView = useInView(ref);
+  const [isFocused, setIsFocused] = useState(0);
 
   const modifyPlaceholders = async (typerConfig: IFormTyper[], type: TyperCategory) => {
     const callbacks = {
@@ -120,13 +121,15 @@ export default function ContactForm() {
   }, [isInView, regenerate]);
 
 
-  const [isFocused, setIsFocused] = useState(0);
   const handleOnFocus = () => {
     setIsFocused(isFocused+1);
   }; 
 
   const handleBlur = () => { 
     setIsFocused(0);
+    if (regenerate) {
+      regenerateTexts();
+    }
   };
 
   const { pending } = useFormStatus();
