@@ -10,8 +10,8 @@ import { cycle } from '@/utility/extended-js';
 
 const heroTagTexts = [
   "Engineering elegant solutions to complex problems.",
-  "Writing clean code is simply in my genes.",
-  "I've done the math. Success is guaranteed.",
+  "Writing clean code is the simple guide.",
+  "I've done the math. Success guaranteed!",
   "⚡☢️ Look out! Bear alert 🐻.",
   "ah nope. nevermind 💬",
   "thinking🤔...",
