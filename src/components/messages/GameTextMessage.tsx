@@ -146,5 +146,6 @@ const GameTextMessage = forwardRef<HTMLDivElement, GameTextMessageProps>(({
     </div>
   );
 });
+GameTextMessage.displayName = 'GameTextMessage'; 
 
 export default GameTextMessage;

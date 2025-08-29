@@ -11,12 +11,12 @@ const MyGameComponent: React.FC = () => {
   };
 
   const handleGameOver = () => {
-    addMessage('Game Over! You lost.', 'error');
+    addMessage('Game Over! You lost.', 'danger');
   };
 
   // Updated to pass mouse coordinates
   const handlePowerUp = (e: React.MouseEvent) => {
-    addMessage('Power-up acquired!', 'default', <RocketIcon />, e.clientX, e.clientY);
+    addMessage('Power-up acquired!', 'info', <RocketIcon />, e.clientX, e.clientY);
   };
 
   return (
