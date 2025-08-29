@@ -15,6 +15,8 @@ import Link from 'next/link';
 import { contact } from '../contact/config';
 import { useMessages } from '@/components/messages/MessageContext';
 import { RocketIcon } from '@radix-ui/react-icons';
+import { MessageTheme } from '@/components/messages/GameTextMessage';
+import { Lightbulb } from 'lucide-react';
 
 const heroTagTexts = [
   "Engineering elegant solutions to complex problems.",
@@ -63,8 +65,48 @@ function Hero() {
   };
 
   const { addMessage } = useMessages();
-  const handleBulbMessage = (e: React.MouseEvent) => {
-    addMessage('Power-up acquired!', 'success', <RocketIcon />, e.clientX, e.clientY);
+  const [ notificationLightbulb, setNotificationLightbulb ] = useState<boolean>(false);
+  const sendNotifyLightbulb = (e: React.MouseEvent) => {
+    if (notificationLightbulb) return;
+    
+    addMessage("that's a lightbulb 😂", "info", <Lightbulb />, e.clientX, e.clientY);
+    setNotificationLightbulb(true);
+  };
+  const sendNotifyContact = (e: React.MouseEvent) => {
+    addMessage("hehe, nice", "info", <RocketIcon />, e.clientX, e.clientY, 1200);
+  };
+
+  const [clickCount, setClickCount] = useState(0);
+  const [firstClickTime, setFirstClickTime] = useState(0);
+  const sendNotifyAvatar = (e: any) => {
+    const currentTime = new Date().getTime();
+    
+    // Reset the counter if the last click was more than 2.5 seconds ago
+    let _clickCount = clickCount;
+    if (currentTime - firstClickTime > 2500) {
+      _clickCount = 0;
+      setClickCount(_clickCount);
+      setFirstClickTime(currentTime);
+    } else {
+      ++_clickCount;
+      setClickCount(prevCount => prevCount + 1);
+    }
+
+    let messages = [
+      { text: 'what?' },
+      { text: 'uh, what?' },
+      { text: "it's no OpenBSD/fortune, but it's fun!" },
+      { text: "stop clicking me!", type: "warning" },
+    ];
+
+    let message: any;
+    if (_clickCount >= 5) {
+      message = { text: 'Access denied.', type: "danger" };
+      setFirstClickTime(currentTime-1500);
+    } else {
+      message = messages[Math.floor(Math.random() * messages.length)];
+    }
+    addMessage(message.text, message.type ?? "default", message.icon, e.target.x + e.target.width / 2 - 175, e.target.y + 85);
   };
 
   const gradientThemeLight =
@@ -167,6 +209,7 @@ function Hero() {
                   style={{
                     imageRendering: "pixelated",
                   }}
+                  onClick={sendNotifyAvatar}
                   priority={true}
                 />
               </motion.div>
@@ -182,14 +225,14 @@ function Hero() {
             tabIndex={-1}
             className="sm:hidden flex items-center justify-start absolute -right-32 2xl:left-auto 2xl:-right-32 -top-4 w-1/2"
             >
-            <span onClick={handleBulbMessage} className="text-6xl float top-16 left-0 absolute">💡</span>
+            <span onClick={sendNotifyLightbulb} className="text-6xl float top-16 left-0 absolute">💡</span>
             <div 
               className="text-2xl border border-white text-white bg-gradient-to-r from-green-300 
                         to-blue-400 dark:from-gray-600 dark:to-blue-800 p-4 pl-16 my-6 rounded-lg flex-1"
             >
               <h3 className="text-3xl mt-2 font-bold tracking-tighter">Did you know?</h3>
               <p>I design and build beautiful websites.</p>
-              <Link href={contact.socials.linkedin!} className={`${styles.link} ${styles.cursive} mt-3 -ml-6`}>Connect&nbsp;</Link><span className={`${styles.cursive} absolute mt-3 ml-2 text-4xl text-yellow-400`}>!</span>
+              <Link onClick={sendNotifyContact}  href={contact.socials.linkedin!} className={`${styles.link} ${styles.cursive} mt-3 -ml-6`}>Connect&nbsp;</Link><span className={`${styles.cursive} absolute mt-3 ml-2 text-4xl text-yellow-400`}>!</span>
             </div>
             <div className="absolute bottom-8 -ml-2 transform rotate-45">
               <div className="w-12 overflow-hidden">

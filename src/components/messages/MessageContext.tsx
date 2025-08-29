@@ -4,14 +4,15 @@ import GameMessageContainer from './GameMessageContainer';
 interface Message {
   id: number;
   message: string;
-  theme?: 'success' | 'error' | 'warning' | 'default';
+  theme?: 'success' | 'danger' | 'warning' | 'info';
   icon?: ReactNode;
-  x?: number; // New
-  y?: number; // New
+  x?: number;
+  y?: number;
+  duration?: number;
 }
 
 interface MessageContextType {
-  addMessage: (message: string, theme?: Message['theme'], icon?: ReactNode, x?: number, y?: number) => void; // Updated
+  addMessage: (message: string, theme?: Message['theme'], icon?: ReactNode, x?: number, y?: number, duration?: number) => void; // Updated
 }
 
 const MessageContext = createContext<MessageContextType | undefined>(undefined);
@@ -24,11 +25,12 @@ export const MessageProvider = ({ children }: { children: ReactNode }) => {
     message: string,
     theme?: Message['theme'],
     icon?: ReactNode,
-    x?: number, // New
-    y?: number // New
+    x?: number,
+    y?: number,
+    duration?: number
   ) => {
     const newId = nextId.current++;
-    const newMessage: Message = { id: newId, message, theme, icon, x, y }; // Updated
+    const newMessage: Message = { id: newId, message, theme, icon, x, y, duration }; // Updated
     setMessages((prevMessages) => [...prevMessages, newMessage]);
   }, []);
 

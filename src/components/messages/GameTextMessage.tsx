@@ -7,18 +7,20 @@ import {
   InfoCircledIcon
 } from '@radix-ui/react-icons';
 
-const themes: Record<string, string> = {
+export type MessageTheme = 'success' | 'danger' | 'warning' | 'info';
+
+const themes: Record<MessageTheme, string> = {
   success: 'bg-green-600/80 text-white',
-  error: 'bg-red-600/80 text-white',
+  danger: 'bg-red-600/80 text-white',
   warning: 'bg-yellow-500/80 text-black',
-  default: 'bg-black/70 text-white dark:bg-white/80 dark:text-black',
+  info: 'bg-black/70 text-white dark:bg-white/80 dark:text-black',
 };
 
 const defaultIcons: Record<string, ReactNode> = {
   success: <CheckIcon />,
-  error: <Cross2Icon />,
+  danger: <Cross2Icon />,
   warning: <ExclamationTriangleIcon />,
-  default: <InfoCircledIcon />,
+  info: <InfoCircledIcon />,
 };
 
 interface GameTextMessageProps {
@@ -29,7 +31,7 @@ interface GameTextMessageProps {
   moveDistance?: number;
   staticWidth?: number;
   wrap?: boolean;
-  theme?: keyof typeof themes;
+  theme?: MessageTheme;
   bottomOffset?: number;
   onFinish?: (id: number) => void;
   className?: string;
@@ -46,7 +48,7 @@ const GameTextMessage = forwardRef<HTMLDivElement, GameTextMessageProps>(({
   moveDistance = 50,
   staticWidth,
   wrap = true,
-  theme = 'default',
+  theme = 'info',
   bottomOffset = 0,
   onFinish,
   className,
@@ -80,6 +82,7 @@ const GameTextMessage = forwardRef<HTMLDivElement, GameTextMessageProps>(({
   const dynamicClasses = twMerge(
     'transform text-sm',
     isMousePositioned ? 'fixed' : 'absolute left-1/2',
+    isMousePositioned ? '' : '-translate-x-1/2',
     wrap ? 'whitespace-normal' : 'whitespace-nowrap',
     staticWidth ? `w-[${staticWidth}px]` : '',
     className,
@@ -87,7 +90,7 @@ const GameTextMessage = forwardRef<HTMLDivElement, GameTextMessageProps>(({
 
   const innerWrapperClasses = twMerge(
     'px-2 py-1 rounded-sm flex items-center gap-2',
-    themes[theme] || themes.default,
+    themes[theme] || themes.info,
   );
 
   const iconToRender = icon !== undefined ? icon : defaultIcons[theme];
@@ -100,7 +103,7 @@ const GameTextMessage = forwardRef<HTMLDivElement, GameTextMessageProps>(({
         ...animationStyle,
         bottom: isMousePositioned ? `calc(100vh - ${y}px)` : `${bottomOffset}px`,
         left: isMousePositioned ? `${x}px` : '50%',
-        transform: isMousePositioned ? 'translate(-50%, -20px)' : 'translate(-50%, 0)', // Adjusted transform
+        transform: isMousePositioned ? 'translate(-50%, 0)' : 'translate(-50%, 0)', // Adjusted transform
         opacity: 1
       }}
     >
@@ -109,11 +112,11 @@ const GameTextMessage = forwardRef<HTMLDivElement, GameTextMessageProps>(({
         @keyframes move-and-fade-anim {
           0% {
             opacity: 1;
-            transform: translate(-50%, -20px);
+            transform: translate(-50%, 0);
           }
           ${((duration - fadeDuration) / duration) * 100}% {
             opacity: 1;
-            transform: translate(-50%, -20px);
+            transform: translate(-50%, 0);
           }
           100% {
             opacity: 0;
@@ -123,15 +126,15 @@ const GameTextMessage = forwardRef<HTMLDivElement, GameTextMessageProps>(({
         @keyframes fade-only-anim {
           0% {
             opacity: 1;
-            transform: translate(-50%, -20px);
+            transform: translate(-50%, 0);
           }
           ${((duration - fadeDuration) / duration) * 100}% {
             opacity: 1;
-            transform: translate(-50%, -20px);
+            transform: translate(-50%, 0);
           }
           100% {
             opacity: 0;
-            transform: translate(-50%, -20px);
+            transform: translate(-50%, 0);
           }
         }
         `}
