@@ -1,0 +1,87 @@
+/* Ensure the parent element (your .hero_card) has relative positioning,
+   but crucially, REMOVE 'overflow: hidden;' if you want the ping to extend outside.
+   If you want a slight overflow but still constrained, keep it, but adjust scale values. */
+   .hero_card {
+    background: radial-gradient(at 58% 50%, rgba(0, 0, 0, 0.22), #e5313157 215%);
+    filter: drop-shadow(-6px -4px 24px rgba(255, 221, 0, 0.23)) drop-shadow(0 2px 5px rgb(255, 221, 0, 0.08));
+    position: relative; /* Essential for positioning the pseudo-element */
+    padding: 20px;
+    border-radius: 15px;
+    /* REMOVE or comment out 'overflow: hidden;' if you want the ping to go fully outside.
+       If you keep it, the ping will be clipped at the border. */
+    /* overflow: hidden; */
+    z-index: 1; 
+}
+
+.hero_card::before {
+    content: '';
+    position: absolute;
+    /* Adjust these values to position the pseudo-element slightly outside */
+    top: -5px; /* Start slightly outside the top border */
+    left: -5px; /* Start slightly outside the left border */
+    right: -5px; /* Start slightly outside the right border */
+    bottom: -5px; /* Start slightly outside the bottom border */
+    
+    border: 2px solid transparent; 
+    border-radius: inherit; 
+    pointer-events: none; 
+    z-index: 0; 
+    animation: echolocate-outside 2s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94); /* New animation name */
+}
+
+@keyframes echolocate-outside { /* Changed animation name for clarity */
+    0% {
+        transform: scale(1); /* Start exactly at the size of the hero_card (or slightly larger) */
+        opacity: 0.7;
+        border-color: rgba(255, 221, 0, 0.7); /* Visible border, perhaps match your glow color */
+        filter: blur(0px);
+    }
+    50% {
+        transform: scale(1.08); /* Grow further outwards */
+        opacity: 0.3;
+        border-color: rgba(255, 221, 0, 0.3); /* Fading border */
+        filter: blur(2px);
+    }
+    100% {
+        transform: scale(1.15); /* Expand significantly outwards */
+        opacity: 0; /* Fully faded out */
+        border-color: rgba(255, 221, 0, 0); /* Transparent border */
+        filter: blur(5px);
+    }
+}
+
+/* Dark mode adjustments (if needed for the ping color) */
+:global(.dark) {
+    .hero_card {
+		$c0: #be512866;
+		$c1: #ce924866;
+		background-image: linear-gradient($c0 25%, $c1 100%);
+    }
+
+    .hero_card::before {
+        animation: echolocate-outside-dark 2s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+}
+
+@keyframes echolocate-outside-dark {
+    0% {
+        transform: scale(1);
+        opacity: 0.4;
+        border-color: rgba(255, 221, 0, 0.4);
+        filter: blur(0px) drop-shadow(0 0 5px rgba(255, 221, 0, 0.4));
+    }
+    35% {
+        opacity: 0.2;
+    }
+    50% {
+        transform: scale(1.04);
+        border-color: rgba(255, 255, 255, 0.2);
+        filter: blur(2px) drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+    }
+    100% {
+        transform: scale(1.08);
+        opacity: 0;
+        border-color: rgba(255, 255, 255, 0);
+        filter: blur(5px) drop-shadow(0 0 20px rgba(255, 255, 255, 0));
+    }
+}

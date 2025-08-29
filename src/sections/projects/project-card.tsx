@@ -22,6 +22,7 @@ import styles from './styles.module.scss';
 import { useMobile } from '@/hooks/useMobile';
 
 interface ProjectCardProps extends Project {
+  isVisible?: boolean;
   className?: string;
 }
 
@@ -30,6 +31,7 @@ function ProjectCard({
   description,
   thumbnail,
   slug,
+  isVisible,
   className
 }: ProjectCardProps) {
   const { mobile, tablet } = useMobile();
@@ -48,7 +50,7 @@ function ProjectCard({
           sizes="100vw"
           width={500}
           height={300}
-          className={`${!mobile && !tablet ? styles.portfolio_image : ''} h-48 w-full rounded-md rounded-b-none border-b-2 object-cover`}
+          className={`${!mobile && !tablet && !isVisible ? styles.portfolio_image : ''} ${styles.portfolio_base}  h-48 w-full rounded-md rounded-b-none border-b-2 object-cover`}
         />
         <div className="block bg-yellow-200/25 dark:bg-inherit relative p-2 h-28 justify-center">
           <h3 className="px-3 text-xl font-bold">{name}</h3>

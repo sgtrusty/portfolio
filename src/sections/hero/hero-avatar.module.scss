@@ -1,30 +1,19 @@
-:global(.dark) {
-	.bg_grad_custom {
-		$xy: 35% 65%;
-		$b: 31deg;
-		$a: 121deg; 
-		$c0: #be512866;
-		$c1: #ce924866;
-		$c2: #e4c06066;
-		$c3: #db9c4e66;
-		background-image: linear-gradient($c0 25%, $c1 100%);
-		// background: radial-gradient(from var(--b) at var(--xy), 
-		//   var(--c0) var(--a), var(--c1) 0% 50%, 
-		//   var(--c2) 0% calc(180deg + var(--a)), var(--c3) 0%);
-	}
-}
-
-.bg_grad_custom {
-	background: radial-gradient(at 58% 50%, rgba(0, 0, 0, 0.22), #e5313157 215%);
-	filter: drop-shadow(-6px -4px 24px rgba(255, 221, 0, 0.23)) drop-shadow(0 2px 5px rgb(255, 221, 0, 0.08));
-	// background: radial-gradient(#9198e5, #e66465);
-}
-
 .cursive {
 	font-family: 'Brush Script MT', 'Lucida Handwriting', cursive;
 }
+ 
+ 
+$linkcolor: cyan;
+:global(.dark) {
+	.link {
+		color: $linkcolor;
+		&::before {
+			opacity: 25%;
+			background-image: linear-gradient(45deg, pink 0%, paleturquoise 100%);
+		}
+	}
+}
 
-$link: #ccc;
 .link {
 	/* RESET */
 	text-decoration: none;
@@ -41,9 +30,8 @@ $link: #ccc;
 	position: relative;
 	overflow: hidden;
 	text-decoration: none;
- 
 
-	color: cyan;
+	color: $linkcolor;
 	text-shadow:0px 0px 2px paleturquoise;
 	
 	&:hover { 
@@ -55,14 +43,14 @@ $link: #ccc;
 		background-size: auto 6px;
 		background-repeat: repeat-x;
 		text-decoration: none;
-}
+	}
 	&::before {
 		content: "";
 		position: absolute;
 		// transform: translateY(0);
 		z-index: -1;
-		opacity: 25%;
-		background-image: linear-gradient(45deg, pink 0%, paleturquoise 100%);
+		opacity: 30%;
+		background-image: linear-gradient(45deg, blue 0%, black 100%);
 		// transition: transform .25s ease-out;
 		left: 0;
 		bottom: 0px;
@@ -79,5 +67,4 @@ $link: #ccc;
 		// transform: translateY(calc(100% - 2px));
 		background-image: #FFFFED;
 	 }
-  }
- 
+}
