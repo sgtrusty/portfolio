@@ -10,9 +10,11 @@ import { useTheme } from 'next-themes';
 import { motion, useInView } from 'framer-motion';
 import { useWindowSize } from '@uidotdev/usehooks';
 import { Typed } from 'typed.ts';
-import { cycle, sleep } from '@/utility/extended-js';
+import { cycle } from '@/utility/extended-js';
 import Link from 'next/link';
 import { contact } from '../contact/config';
+import { useMessages } from '@/components/messages/MessageContext';
+import { RocketIcon } from '@radix-ui/react-icons';
 
 const heroTagTexts = [
   "Engineering elegant solutions to complex problems.",
@@ -58,6 +60,11 @@ function Hero() {
     const toIndex = cycle(genIndex + 1, 0, heroTagTexts.length);
     setGenIndex(toIndex);
     setTimeout(() => setRegenerate(true), 5000);
+  };
+
+  const { addMessage } = useMessages();
+  const handleBulbMessage = (e: React.MouseEvent) => {
+    addMessage('Power-up acquired!', 'success', <RocketIcon />, e.clientX, e.clientY);
   };
 
   const gradientThemeLight =
@@ -175,14 +182,14 @@ function Hero() {
             tabIndex={-1}
             className="sm:hidden flex items-center justify-start absolute -right-32 2xl:left-auto 2xl:-right-32 -top-4 w-1/2"
             >
-            <span className="text-6xl float top-16 left-0 absolute">💡</span>
+            <span onClick={handleBulbMessage} className="text-6xl float top-16 left-0 absolute">💡</span>
             <div 
               className="text-2xl border border-white text-white bg-gradient-to-r from-green-300 
                         to-blue-400 dark:from-gray-600 dark:to-blue-800 p-4 pl-16 my-6 rounded-lg flex-1"
             >
               <h3 className="text-3xl mt-2 font-bold tracking-tighter">Did you know?</h3>
               <p>I design and build beautiful websites.</p>
-              <Link href={contact.socials.linkedin} className={`${styles.link} ${styles.cursive} mt-3 -ml-6`}>Connect&nbsp;</Link><span className={`${styles.cursive} absolute mt-3 ml-2 text-4xl text-yellow-400`}>!</span>
+              <Link href={contact.socials.linkedin!} className={`${styles.link} ${styles.cursive} mt-3 -ml-6`}>Connect&nbsp;</Link><span className={`${styles.cursive} absolute mt-3 ml-2 text-4xl text-yellow-400`}>!</span>
             </div>
             <div className="absolute bottom-8 -ml-2 transform rotate-45">
               <div className="w-12 overflow-hidden">
@@ -191,7 +198,6 @@ function Hero() {
             </div>
           </motion.div>
         </motion.section>
-
       </div>
     </MotionWrap>
   );

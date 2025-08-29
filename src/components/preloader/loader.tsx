@@ -1,48 +1,19 @@
 'use client';
 import styles from './style.module.scss';
-import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { LOADER_ANIM_OPACITY, LOADER_ANIM_SLIDEUP, LOADER_LOADTICK, LOADER_LOADTICK_INITIAL, LOADER_LOADTIME } from './config';
+import { useEffect, useState } from 'react';
+import { LOADER_ANIM_OPACITY, LOADER_ANIM_SLIDEUP } from './config';
 
-const steps = [
-  '10%',
-  '20%',
-  '30%',
-  '40%',
-  '50%',
-  '60%',
-  '70%',
-  '80%',
-  '90%',
-  '100%'
-];
-
-export default function Loader() {
-  // TODO: Use actual loader modules
-  // - https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming
-  // - https://medium.com/@usamahafeez0/streaming-ui-with-suspense-in-nextjs-e30ac1466dbc
-  // - https://borstch.com/blog/development/implementing-loading-ui-and-streaming-in-nextjs-14
-  // - https://nextjs.org/docs/app/building-your-application/optimizing/lazy-loading#importing-client-components
-  
-  const [index, setIndex] = useState(0);
+export default function Loading() {
   const [dimension, setDimension] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
+    // This hook is still needed to get the window dimensions for the SVG path
     setDimension({ width: window.innerWidth, height: window.innerHeight });
   }, []);
 
-  useEffect(() => {
-    if (index == steps.length - 1) return;
-    setTimeout(
-      () => {
-        setIndex(index + 1);
-      },
-      index == 0 ? LOADER_LOADTICK_INITIAL  : LOADER_LOADTICK
-    );
-  }, [index]);
-
-  const initialPath = `M0 0 L${dimension.width} 0 L${dimension.width} ${dimension.height} Q${dimension.width / 2} ${dimension.height + 300} 0 ${dimension.height}  L0 0`;
-  const targetPath = `M0 0 L${dimension.width} 0 L${dimension.width} ${dimension.height} Q${dimension.width / 2} ${dimension.height} 0 ${dimension.height}  L0 0`;
+  const initialPath = `M0 0 L${dimension.width} 0 L${dimension.width} ${dimension.height} Q${dimension.width / 2} ${dimension.height + 300} 0 ${dimension.height} L0 0`;
+  const targetPath = `M0 0 L${dimension.width} 0 L${dimension.width} ${dimension.height} Q${dimension.width / 2} ${dimension.height} 0 ${dimension.height} L0 0`;
 
   const curve = {
     initial: {
@@ -65,7 +36,7 @@ export default function Loader() {
       {dimension.width > 0 && (
         <>
           <motion.p variants={LOADER_ANIM_OPACITY} initial="initial" animate="enter">
-            {steps[index]}
+            Loading...
           </motion.p>
           <svg>
             <motion.path

@@ -11,10 +11,9 @@ import { metadata as meta } from '@/app/config';
 import { useClickAway } from '@uidotdev/usehooks';
 
 interface HeaderProps {
-  loader?: boolean;
 }
 
-const Header = ({ loader }: HeaderProps) => {
+const Header = ({ }: HeaderProps) => {
   const [isActive, setIsActive] = useState<boolean>(false);
   const [{ x: scrollX, y: scrollY }, scrollTo] = useWindowScroll();
   const [animated, setAnimated] = useState<boolean>(false);
@@ -34,7 +33,7 @@ const Header = ({ loader }: HeaderProps) => {
           y: 0
         }}
         transition={{
-          delay: loader ? 3.5 : 0, // 3.5 for loading, .5 can be added for delay
+          delay: 0,
           duration: 0.8
         }}
       >
